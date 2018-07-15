@@ -11,6 +11,9 @@ jobs:
   artifacting:
     docker:
       - image: golang:1.10
+    environment:
+      - GH_USER: nu00
+      - GH_EMAIL: xiangminli00@qq.com
     steps:
         - checkout
         - run: go test -v ./...
@@ -25,6 +28,18 @@ jobs:
             destination: world-2
         - store_artifacts:
             path: /tmp/hello-1
+  deploy:
+    docker:
+      - image: golang:1.10
+    steps:
+      - checkout
+      - run: mkdir build
+      - run: echo "deply hello" >> build/doc.txt
+      - run: |
+          git add -A
+          git commit -m "hello deploy"
+
+          git push origin master
 
 workflows:
   version: 2
