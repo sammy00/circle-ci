@@ -3,8 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.9
-    environment:
-      - GIT_COMMIT_DESC: git log --format=oneline -n 1 ${CIRCLE_SHA1}
     steps:
       - checkout
       - run: echo "hello world"
@@ -12,10 +10,7 @@ jobs:
       - run: go test -v ./...
       - run: |
           echo ${CIRCLE_SHA1}
-          echo $CIRCLE_SHA1
-          echo ${GIT_COMMIT_DESC}
-          echo $GIT_COMMIT_DESC
-          echo $(git log --pretty=oneline -n 1 ${CIRCLE_SHA1})
+          echo $(git log --pretty=format:%s -n 1 ${CIRCLE_SHA1})
   artifacting:
     docker:
       - image: golang:1.10
