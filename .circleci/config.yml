@@ -31,11 +31,17 @@ jobs:
   deploy:
     docker:
       - image: golang:1.10
+    environment:
+      - GH_USER: nu00
+      - GH_EMAIL: xiangminli00@qq.com
     steps:
       - checkout
       - run: mkdir build
       - run: echo "deply hello" >> build/doc.txt
       - run: |
+          git config --global user.email ${GH_EMAIL}
+          git config --global user.name ${GH_USER}
+
           git add -A
           git commit -m "hello deploy"
 
