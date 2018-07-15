@@ -36,7 +36,7 @@ jobs:
       - GH_EMAIL: xiangminli00@qq.com
     steps:
       - checkout
-      - run: mkdir build
+#      - run: mkdir build
       - run: echo "deply hello" >> build/doc.txt
       - run: |
           git config --global user.email ${GH_EMAIL}
