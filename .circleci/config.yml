@@ -14,16 +14,16 @@ jobs:
         - checkout
         - run: go test -v ./...
         - run:
-          name: dummy artifacting
-          command: |
-            echo "hello artifact" > /tmp/hello-1
-            mkdir /tmp/artifacts
-            echo "world artifact" > /tmp/artifacts/hello-2;
+            name: dummy artifacting
+            command: |
+              echo "hello artifact" > /tmp/hello-1
+              mkdir /tmp/artifacts
+              echo "world artifact" > /tmp/artifacts/hello-2;
         - store_artifacts:
-          path: /tmp/artifacts/
-          destination: world-2
+            path: /tmp/artifacts/
+            destination: world-2
         - store_artifacts:
-          path: /tmp/hello-1
+            path: /tmp/hello-1
 
 workflows:
   version: 2
