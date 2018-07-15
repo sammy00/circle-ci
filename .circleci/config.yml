@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image circleci/golang:1.10
+      - image circleci/golang:1.9
     steps:
-      - run echo "hello world"
-      - go test -v ./...
+      - checkout
+      - run: echo "hello world"
+      - run: go test -v ./...
