@@ -7,3 +7,10 @@ jobs:
       - checkout
       - run: echo "hello world"
       - run: go test -v ./...
+  build2:
+    docker:
+      - image: golang/golang:1.10
+    steps:
+        - checkout
+        - run: echo "another build"
+        - run: go test -v ./...
