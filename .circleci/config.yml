@@ -56,3 +56,6 @@ workflows:
       - build
       - artifacting
       - deploy
+          filters:
+            branches:
+              only: dev
