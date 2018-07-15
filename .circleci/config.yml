@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - run: echo "hello world"
+      - run: echo "welcome nu00"
       - run: go test -v ./...
   artifacting:
     docker:
