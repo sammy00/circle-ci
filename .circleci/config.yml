@@ -1,22 +1,33 @@
 version: 2
 jobs:
-#  build:
-#    docker:
-#      - image: circleci/golang:1.9
-#    steps:
-#      - checkout
-#      - run: echo "hello world"
-#      - run: go test -v ./...
-  build2:
+  build:
+    docker:
+      - image: circleci/golang:1.9
+    steps:
+      - checkout
+      - run: echo "hello world"
+      - run: go test -v ./...
+  artifacting:
     docker:
       - image: golang:1.10
     steps:
         - checkout
-        - run: echo "another build"
         - run: go test -v ./...
-#workflows:
-#  version: 2
-#  build-1-2:
-#    jobs:
-#      - build
-#      - build2
+        - run:
+          name: dummy artifacting
+          command: |
+            echo "hello artifact" > /tmp/hello-1
+            mkdir /tmp/artifacts
+            echo "world artifact" > /tmp/artifacts/hello-2;
+        - store_artifacts:
+          path: /tmp/artifacts/
+          destination: world-2
+        - store_artifacts:
+          path: /tmp/hello-1
+
+workflows:
+  version: 2
+  build-1-2:
+    jobs:
+      - build
+      - artifacting
