@@ -34,7 +34,7 @@ jobs:
           rm -rf build
           mkdir build
           echo "deply hello-world ${CIRCLE_SHA1}" >> build/doc.txt
-
+          
           git add -A
           git commit -m "hello deploy"
           git push origin master
